@@ -1,4 +1,5 @@
 # ZF2-OTRS
+<<<<<<< HEAD
 
 Zend Framework 2 Module for Integration of OTRS 4.
 
@@ -12,3 +13,5 @@ Global/local Config:
     'webservice'    => 'GenericTicketConnectorSOAP', //Webservice name
 ),
 ```
+=======
+>>>>>>> d40e7455f652d112a533a244f0658d6c522f9c72
