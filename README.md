@@ -10,6 +10,8 @@ Global/local Config:
     'password'      => 'MyPassword', // Password of any agent
     'webservice'    => 'GenericTicketConnectorSOAP', //Webservice name
 ),
+```
+
 
 Don't forget to add a webservice in OTRS. You could use at example following configuration:
 https://github.com/OTRS/otrs/blob/rel-4_0/development/webservices/GenericTicketConnectorSOAP.yml
