@@ -1,5 +1,5 @@
 {
-    "name": "n3xt0r/zf2_otrs ",
+    "name": "n3xt0r/zf2otrs",
     "description" : "Integrates OTRS 4 in ZF2",
     "require" : {
         "php" : ">=5.4.0",
