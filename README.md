@@ -1,7 +1,15 @@
 # ZF2-OTRS
 Zend Framework 2 Module for Integration of OTRS 4.
 
-Global/local Config:
+# Installation via Composer
+
+```
+require "n3xt0r/zf2otrs": "dev-master"
+```
+
+after it enable it in your Configuration.
+
+## Global/local Config:
 
 ```
 'otrs' => array(
