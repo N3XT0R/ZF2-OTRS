@@ -2,6 +2,7 @@
 
 namespace OTRS\Entity;
 
+
 class TicketGetResponseArticle extends Article{
     
     protected $Age;
@@ -657,5 +658,4 @@ class TicketGetResponseArticle extends Article{
     }
 
 
-    
 }

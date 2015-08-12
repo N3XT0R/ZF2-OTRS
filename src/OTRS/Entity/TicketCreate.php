@@ -80,8 +80,8 @@ class TicketCreate {
         return $this;
     }
 
-    public function setAttachment(array $Attachments) {
-        $this->Attachment = $Attachment;
+    public function setAttachment(array $aAttachments) {
+        $this->Attachment = $aAttachments;
         return $this;
     }
 

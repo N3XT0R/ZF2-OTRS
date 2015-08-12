@@ -33,6 +33,8 @@ class OtrsServiceFactory implements FactoryInterface{
         'TicketSearchResponse'              => 'OTRS\Entity\TicketSearchResponse',
         'OTRS_TicketSearch_DynamicField'    => 'OTRS\Entity\TicketSearchDynamicField',
         'OTRS_TicketSearch_TicketFlag'      => 'OTRS\Entity\TicketSearchTicketFlag',
+        //'ArrayOfArticle'                    => 'OTRS\Entity\ArrayOfArticle',
+        //'ArticleGet'                        => 'OTRS\Entity\ArticleGet',
     );
     
     public function setClassMap(array $classmap){
@@ -45,20 +47,20 @@ class OtrsServiceFactory implements FactoryInterface{
     }
     
     public function createService(ServiceLocatorInterface $serviceLocator) {
-        
         $aConfig = $serviceLocator->get("Config");
         $aOTRS   = $aConfig["otrs"];
-        
         
         $url = $aOTRS["url"]."/".$aOTRS["webservice"];
         
         $aOptions = array(
-            'location'  => $url,
-            'login'     => $aOTRS["username"],
-            'password'  => $aOTRS["password"],
-            'soap_version' => SOAP_1_1,
-            'encoding'  => 'UTF-8',
-            'classmap'  => $this->getClassMap(),
+            'location'      => $url,
+            'login'         => $aOTRS["username"],
+            'password'      => $aOTRS["password"],
+            'soap_version'  => SOAP_1_1,
+            //'encoding'      => 'UTF-8',
+            'classmap'      => $this->getClassMap(),
+            'cache_wsdl'    => false,
+            //'features' => SOAP_SINGLE_ELEMENT_ARRAYS,
         );
         
         

@@ -46,7 +46,7 @@ Second Parameter: get all articles? Default = false
 ```
 use OTRS\Entity\Ticket;
 
-$CustomerUser = "root@localhost";  
+$CustomerUser = "root@localhost";
 
 $oTicket = new Ticket();
 $oTicket->setTitle("Testtitle");
@@ -77,4 +77,13 @@ $aAttachments = array(); //array of \OTRS\Entity\Attachment (optional)
 
 /** @var $oTicketCreateResponse \OTRS\Entity\TicketCreateResponse **/
 $oTicketCreateResponse = $oOtrsService->createTicket($CustomerUser, $oTicket, $oArticle, $aAttachments);
-``` 
+```
+
+
+### Debugging
+
+```
+if($oOtrsService->hasErrorMessages()){
+   print_r($oOtrsService->getErrorMessages());
+}
+```

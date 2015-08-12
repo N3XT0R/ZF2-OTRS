@@ -3,7 +3,7 @@
     "description" : "Integrates OTRS 4 in ZF2",
     "require" : {
         "php" : ">=5.4.0",
-        "zendframework/zendframework" : ">=2.3.2,<3.0.0"
+        "zendframework/zendframework" : ">=2.5.0,<3.0.0"
     },
     "repositories": [
         {
@@ -11,12 +11,12 @@
             "url": "https://github.com/N3XT0R/ZF2-OTRS"
         }
     ],
-    "authors" : [ 
+    "authors" : [
         {
             "name" : "Ilya Beliaev",
             "email" : "info@php-dev.info",
             "homepage" : "http://blog.php-dev.info"
-        } 
+        }
     ],
     "autoload" : {
         "psr-4" : {

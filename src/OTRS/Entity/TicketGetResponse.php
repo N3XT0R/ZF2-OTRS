@@ -2,7 +2,7 @@
 
 namespace OTRS\Entity;
 
-class TicketGetResponse {
+class TicketGetResponse{
     
     private $Ticket;
     private $Error;
