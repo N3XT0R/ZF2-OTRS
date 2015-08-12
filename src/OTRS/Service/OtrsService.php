@@ -1,6 +1,7 @@
 <?php
 
 namespace OTRS\Service;
+
 use Zend\Server\Client;
 use OTRS\Entity;
 
@@ -8,9 +9,33 @@ class OtrsService {
     
     protected $oSOAPClient;
     protected $aConfig;
+    protected $aErrorMessages = array();
     
     public function __construct(Client $soapClient) {
         $this->setSoapClient($soapClient);
+    }
+    
+    public function addErrorMessage($sErrorMessage){
+        $this->aErrorMessages[] = $sErrorMessage;
+        return $this;
+    }
+    
+    public function getErrorMessages(){
+        return $this->aErrorMessages;
+    }
+    
+    public function setErrorMessages(array $aErrorMessages){
+        $this->aErrorMessages = $aErrorMessages;
+        return $this;
+    }
+    
+    public function hasErrorMessages(){
+        return count($this->getErrorMessages()) > 0;
+    }
+    
+    public function clearErrorMessages(){
+        $this->setErrorMessages(array());
+        return $this;
     }
     
     public function setSoapClient(Client $soapClient){
@@ -54,7 +79,35 @@ class OtrsService {
         $oTicketGet->setPassword($aConfig["password"]);
         $oTicketGet->setTicketID($iTicketId);
         $oTicketGet->setAllArticles($blGetAllArticles);
-        $oResponse = $oClient->TicketGet($oTicketGet);
+        
+        try{
+            $oResponse = $oClient->TicketGet($oTicketGet);
+        } catch (\Exception $ex) {
+            $this->addErrorMessage($ex->getMessage());
+        }
+        
+        
+        return $oResponse;
+    }
+    
+    /**
+     * Get Articles by Ticket-Object
+     * @param \OTRS\Entity\TicketGetResponseTicket $oTicket Ticket-Object
+     * @return type
+     */
+    public function getArticlesByOtrsTicket(Entity\TicketGetResponseTicket $oTicket){
+        $aConfig = $this->getConfig();
+        $oClient = $this->getSoapClient();
+        
+        $oArticleGet = new Entity\ArticleGet();
+        $oArticleGet->setTicketID($oTicket->getTicketID());
+        $oArticleGet->setUserID($oTicket->getOwnerID());
+        
+        try{
+            $oResponse = $oClient->ArticleGet($oArticleGet);
+        } catch (\SoapFault $ex) {
+            $this->addErrorMessage($ex->getMessage());
+        }
         
         return $oResponse;
     }
@@ -80,13 +133,12 @@ class OtrsService {
         if(count($aAttachments) > 0){
             $oTicketCreate->setAttachment($aAttachments);
         }
+        
         try{
             $oResponse = $oClient->TicketCreate($oTicketCreate);
-        } catch (\Exception $ex) {
-            var_dump($oClient->getLastRequest());
-            var_dump($ex);
+        }catch(\Exception $ex){
+            $this->addErrorMessage($ex->getMessage());
         }
-        
         
         return $oResponse;
     }

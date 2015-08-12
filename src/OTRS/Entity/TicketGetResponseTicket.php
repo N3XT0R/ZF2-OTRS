@@ -6,7 +6,7 @@ class TicketGetResponseTicket extends ActionTicket{
     
     private $Age;
     private $ArchiveFlag;
-    private $Article;
+    private $Article = array();
     private $ChangeBy;
     private $Changed;
     private $Closed;
@@ -71,6 +71,11 @@ class TicketGetResponseTicket extends ActionTicket{
 
     public function getArticle() {
         return $this->Article;
+    }
+    
+    public function addArticle($oArticle){
+        $this->Article[] = $oArticle;
+        return $this;
     }
 
     public function getChangeBy() {
